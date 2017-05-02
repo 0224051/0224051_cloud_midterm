@@ -11805,8 +11805,6 @@ div#notebook {
 <span class="k">print</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span>
 <span class="k">print</span> <span class="n">target</span><span class="o">.</span><span class="n">shape</span>
 <span class="k">print</span> <span class="nb">set</span> <span class="p">(</span><span class="n">target</span><span class="p">)</span>
-<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span>
-<span class="n">X</span><span class="o">.</span><span class="n">shape</span>
 </pre></div>
 
 </div>
@@ -11828,17 +11826,6 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 </div>
 </div>
 
-<div class="output_area">
-<div class="prompt output_prompt">Out[1]:</div>
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>(150, 4)</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -11850,6 +11837,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
 <span class="kn">from</span> <span class="nn">sklearn.feature_selection</span> <span class="kn">import</span> <span class="n">SelectFromModel</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">data</span><span class="p">,</span> <span class="n">target</span>
 <span class="n">lsvc</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mf">0.01</span><span class="p">,</span> <span class="n">penalty</span><span class="o">=</span><span class="s2">&quot;l1&quot;</span><span class="p">,</span> <span class="n">dual</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">SelectFromModel</span><span class="p">(</span><span class="n">lsvc</span><span class="p">,</span> <span class="n">prefit</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">X_new</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -11900,8 +11888,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 <div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesClassifier</span>
-<span class="n">SF</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">()</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="n">SF</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">()</span>
 <span class="n">SF</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="c1"># training on the iris dataset</span>
 </pre></div>
 
@@ -11919,11 +11906,10 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>ExtraTreesClassifier(bootstrap=False, class_weight=None, criterion=&#39;gini&#39;,
-           max_depth=None, max_features=&#39;auto&#39;, max_leaf_nodes=None,
-           min_samples_leaf=1, min_samples_split=2,
-           min_weight_fraction_leaf=0.0, n_estimators=10, n_jobs=1,
-           oob_score=False, random_state=None, verbose=0, warm_start=False)</pre>
+<pre>LinearSVC(C=1.0, class_weight=None, dual=True, fit_intercept=True,
+     intercept_scaling=1, loss=&#39;squared_hinge&#39;, max_iter=1000,
+     multi_class=&#39;ovr&#39;, penalty=&#39;l2&#39;, random_state=None, tol=0.0001,
+     verbose=0)</pre>
 </div>
 
 </div>
@@ -12036,7 +12022,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.833333333333
+<pre>0.883333333333
 </pre>
 </div>
 </div>
@@ -12067,8 +12053,8 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[16  0  0]
- [ 0 21  8]
- [ 0  2 13]]
+ [ 0 19  3]
+ [ 0  4 18]]
 </pre>
 </div>
 </div>
@@ -12102,10 +12088,10 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 <pre>             precision    recall  f1-score   support
 
      setosa       1.00      1.00      1.00        16
- versicolor       0.91      0.72      0.81        29
-  virginica       0.62      0.87      0.72        15
+ versicolor       0.83      0.86      0.84        22
+  virginica       0.86      0.82      0.84        22
 
-avg / total       0.86      0.83      0.84        60
+avg / total       0.88      0.88      0.88        60
 
 </pre>
 </div>
