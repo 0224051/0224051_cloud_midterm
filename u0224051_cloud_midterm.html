@@ -11902,7 +11902,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">ExtraTreesClassifier</span>
 <span class="n">SF</span> <span class="o">=</span> <span class="n">ExtraTreesClassifier</span><span class="p">()</span>
-<span class="n">SF</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="c1"># training on the iris dataset</span>
+<span class="n">SF</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="c1"># training on the iris dataset</span>
 </pre></div>
 
 </div>
@@ -11937,7 +11937,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 <div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython2"><pre><span></span><span class="n">SF</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">SF</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_new</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 
 </div>
@@ -11949,14 +11949,22 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 
 
 <div class="output_area">
-<div class="prompt output_prompt">Out[5]:</div>
+<div class="prompt"></div>
 
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>1.0</pre>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[ 1.]
+</pre>
+</div>
 </div>
 
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>/opt/conda/envs/python2/lib/python2.7/site-packages/sklearn/utils/validation.py:386: DeprecationWarning: Passing 1d arrays as data is deprecated in 0.17 and willraise ValueError in 0.19. Reshape your data either using X.reshape(-1, 1) if your data has a single feature or X.reshape(1, -1) if it contains a single sample.
+  DeprecationWarning)
+</pre>
+</div>
 </div>
 
 </div>
@@ -11968,8 +11976,37 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 <div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="k">print</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+<div class="prompt"></div>
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">cross_validation</span>
-<span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">t_train</span><span class="p">,</span> <span class="n">t_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">t</span>
+<span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">t_train</span><span class="p">,</span> <span class="n">t_test</span> <span class="o">=</span> <span class="n">cross_validation</span><span class="o">.</span><span class="n">train_test_split</span><span class="p">(</span><span class="n">X_new</span><span class="p">,</span> <span class="n">t</span>
 <span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 
@@ -11980,7 +12017,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">SF</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train</span><span class="p">,</span><span class="n">t_train</span><span class="p">)</span> 
@@ -11999,7 +12036,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 <div class="prompt"></div>
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>0.916666666667
+<pre>0.833333333333
 </pre>
 </div>
 </div>
@@ -12010,7 +12047,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">confusion_matrix</span>
@@ -12030,8 +12067,8 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>[[16  0  0]
- [ 0 22  4]
- [ 0  1 17]]
+ [ 0 21  8]
+ [ 0  2 13]]
 </pre>
 </div>
 </div>
@@ -12042,7 +12079,7 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
@@ -12065,10 +12102,10 @@ set([&#39;setosa&#39;, &#39;versicolor&#39;, &#39;virginica&#39;])
 <pre>             precision    recall  f1-score   support
 
      setosa       1.00      1.00      1.00        16
- versicolor       0.96      0.85      0.90        26
-  virginica       0.81      0.94      0.87        18
+ versicolor       0.91      0.72      0.81        29
+  virginica       0.62      0.87      0.72        15
 
-avg / total       0.92      0.92      0.92        60
+avg / total       0.86      0.83      0.84        60
 
 </pre>
 </div>
